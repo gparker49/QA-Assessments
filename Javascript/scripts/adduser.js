@@ -9,6 +9,8 @@ const phonelabel = document.createElement("label")
 const addresslabel = document.createElement("label")
 const departmentlabel = document.createElement("label")
 const addbutton = document.createElement("button")
+const removebutton = document.createElement("button")
+const viewbutton = document.createElement("button")
 const br = document.createElement("br")
 
 
@@ -57,7 +59,42 @@ document.body.appendChild(br)
 document.body.appendChild(addbutton)
 addbutton.innerHTML = "Add User"
 
+document.body.appendChild(br)
+document.body.appendChild(removebutton)
+removebutton.innerHTML = "Delete User"
+
+document.body.appendChild(br)
+document.body.appendChild(viewbutton)
+viewbutton.innerHTML = "View Entries"
+
+var database = []
+
 addbutton.onclick = function(){
     var myJSON = [document.getElementById("ninumber").value, document.getElementById("fullname").value, document.getElementById("phonenumber").value, document.getElementById("address").value, document.getElementById("department").value]
-    console.log(myJSON)
+    database.push(myJSON)
+    window.alert("Data successfully added")
 }
+
+removebutton.onclick = function(){
+    for(var i = 0; i < database.length; i++){
+        if(database[i][0] == document.getElementById("ninumber").value){
+            database.splice(i, 1)
+        }
+    }
+
+    database.forEach(element => {
+        document.createElement("label").innerHTML = element[0]
+    });
+}
+
+viewbutton.onclick = function(){
+    document.write(database)
+
+    const backbutton = document.createElement("button")
+    document.body.appendChild(br)
+    document.body.appendChild(backbutton)
+    backbutton.innerHTML = "back"
+}
+
+
+
