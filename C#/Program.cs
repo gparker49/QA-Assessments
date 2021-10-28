@@ -6,6 +6,7 @@ namespace QA_Assessment
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Console.WriteLine("Please make a choice:");
@@ -17,7 +18,7 @@ namespace QA_Assessment
             switch (userinput)
             {
                 case "1":
-                    Console.WriteLine("SECTION ONE");
+                    insert();
                     break;
                 case "2":
                     Console.WriteLine("SECTION TWO");
@@ -26,14 +27,30 @@ namespace QA_Assessment
                     Console.WriteLine("please enter again");
                     break;
             }
+
+            void insert()
+            {
+                string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=ComputerShop;Integrated Security=True";
+                SqlConnection connection = new SqlConnection(@connectionString);
+                string query = "INSERT INTO Person (product_name, quantity, price, sale_date) VALUES('coke', 4, 3.1, 2008-11-11)";
+                SqlCommand command = new SqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Records inserted successfully");
+                }
+                catch
+                {
+                    Console.WriteLine(" somethign went wrong");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
 
-        public void insert()
-        {
-            SqlConnection connection = new SqlConnection(@connectionString);
-            string query = "INSERT INTO Person (product_name, quantity, price, sale_date) VALUES('coke', 4, 3.1, 2008-11-11)";
-            SqlCommand command = new SqlCommand(query, connection);
-
-        }
     }
 }
