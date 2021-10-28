@@ -30,7 +30,7 @@ namespace QA_Assessment
 
             void insert()
             {
-                string connectionString = "Data Source=.\\SQLEXPRESS;Initial Catalog=ComputerShop;Integrated Security=True";
+                string connectionString = "Server=PLACEHOLDER; Database=company;";
                 SqlConnection connection = new SqlConnection(@connectionString);
                 string query = "INSERT INTO Person (product_name, quantity, price, sale_date) VALUES('coke', 4, 3.1, 2008-11-11)";
                 SqlCommand command = new SqlCommand(query, connection);
