@@ -11,6 +11,7 @@ const departmentlabel = document.createElement("label")
 const addbutton = document.createElement("button")
 const removebutton = document.createElement("button")
 const viewbutton = document.createElement("button")
+const editbutton = document.createElement("button")
 const br = document.createElement("br")
 
 
@@ -67,6 +68,10 @@ document.body.appendChild(br)
 document.body.appendChild(viewbutton)
 viewbutton.innerHTML = "View Entries"
 
+document.body.appendChild(br)
+document.body.appendChild(editbutton)
+editbutton.innerHTML = "Edit Entries"
+
 var database = []
 
 addbutton.onclick = function(){
@@ -95,6 +100,22 @@ viewbutton.onclick = function(){
     document.body.appendChild(backbutton)
     backbutton.innerHTML = "back"
 }
+
+
+//Have to have the national insurance entered in order to edit the value in the database
+editbutton.onclick = function(){
+    var userentry = document.getElementById("ninumber").value
+    for (i = 0; i < database.length; i++) {
+        console.log(database[i][0])
+        if (userentry == database[i][0]) {
+            database[i][1] = document.getElementById("fullname").value
+            database[i][2] = document.getElementById("phonenumber").value
+            database[i][3] = document.getElementById("address").value
+            database[i][4] = document.getElementById("department").value
+        }
+    }
+}
+
 
 
 
